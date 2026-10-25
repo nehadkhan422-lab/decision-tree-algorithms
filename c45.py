@@ -92,3 +92,8 @@ def run_c45():
     print("Accuracy:", round(accuracy, 4))
     print("\nTree:")
     print_tree(tree)
+    return accuracy
+
+
+if __name__ == "__main__":
+    run_c45()
