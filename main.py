@@ -1,18 +1,15 @@
-from sklearn.datasets import load_iris
-import pandas as pd
+from cart import run_cart
+from id3 import run_id3
+from c45 import run_c45
 
-# Load the Iris dataset
-iris = load_iris()
+print("Running all three algorithms...\n")
 
-# Put it into a table (DataFrame)
-df = pd.DataFrame(iris.data, columns=iris.feature_names)
-df["species"] = [iris.target_names[i] for i in iris.target]
+results = {
+    "ID3": run_id3(),
+    "C4.5": run_c45(),
+    "CART": run_cart(),
+}
 
-# Look at the data
-print("First 5 rows:")
-print(df.head())
-
-print("\nShape (rows, columns):", df.shape)
-
-print("\nHow many flowers of each species:")
-print(df["species"].value_counts())
+print("\n\n=== FINAL COMPARISON ===")
+for name, acc in results.items():
+    print(f"{name:6s} accuracy: {acc:.4f}")
